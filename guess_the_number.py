@@ -4,7 +4,9 @@ import colorama
 number_choice = random.randint(1, 100)
 attempts = 0
 is_Over = False
-print("Welcome to 'Guess the Number' by Danny!\nYou have 5 attempts to guess the number and pass to the next level.\n"
+is_Passed = False
+print("Welcome to 'Guess the Number' by Danny!\nYou have 5 attempts to guess the number(1-100)\
+ and pass to the next level.\n"
       "Good luck!")
 
 
@@ -22,7 +24,17 @@ while True:
             else:
                 print(colorama.Fore.RED + "Invalid option, please confirm your choice.")
                 continue
+
+    # Next level
+    if is_Passed:
+        print("Congratulations, you have reached the next, level!\n"
+              "You have 5 attempts to guess the new number(1-200).\n"
+              "Good luck!")
+        number_choice = random.randint(1, 200)
+        attempts = 0
+
     is_Over = False
+    is_Passed = False
 
     # Game logic
     player_choice = input(colorama.Fore.LIGHTWHITE_EX + "Guess the number: ")
@@ -33,7 +45,8 @@ while True:
 
     if int(player_choice) == number_choice:
         print(colorama.Fore.LIGHTGREEN_EX + f"You got it! The correct number was: {number_choice}")
-        is_Over = True
+        is_Passed = True
+        continue
     elif int(player_choice) > number_choice:
         print(colorama.Fore.RED + "Too high!")
         attempts += 1
