@@ -3,10 +3,28 @@ import colorama
 
 number_choice = random.randint(1, 100)
 attempts = 0
-# Game logic
+is_Over = False
+print("Welcome to 'Guess the Number' by Danny!\nYou have 5 attempts to guess the number and pass to the next level.\n"
+      "Good luck!")
+
+
 
 while True:
-    player_choice = input(colorama.Fore.LIGHTWHITE_EX + "Guess the number!: ")
+    # Repeatability after losing
+    if is_Over:
+        while True:
+            restart = str(input(colorama.Fore.LIGHTWHITE_EX + "Play again?: (y / n): "))
+            if restart == "y" or restart == "Y":
+                break
+            elif restart == "n" or restart == "N":
+                print("Goodbye!")
+                raise SystemExit
+            else:
+                print(colorama.Fore.RED + "Invalid option, please confirm your choice.")
+                continue
+
+    # Game logic
+    player_choice = input(colorama.Fore.LIGHTWHITE_EX + "Guess the number: ")
 
     if not player_choice.isnumeric():
         print(colorama.Fore.RED + f"That's not a number! Please input a number and try again.")
@@ -21,8 +39,8 @@ while True:
         print(colorama.Fore.RED + "Too low!")
         attempts += 1
 
-    if attempts == 4:
-        print(colorama.Fore.RED + f"Game over! 4 attempts reached.")
-        break
+    if attempts == 5:
+        print(colorama.Fore.RED + f"Game over! 5 attempts reached.")
+        is_Over = True
     else:
-        print(colorama.Fore.YELLOW + f"-{4 - attempts} attempts left-")
+        print(colorama.Fore.YELLOW + f"-{5 - attempts} attempts left-")
