@@ -1,5 +1,6 @@
 import random
 import colorama
+import pyfiglet
 
 number_choice = random.randint(1, 100)
 attempts = 0
@@ -19,7 +20,7 @@ while True:
                 attempts = 0
                 break
             elif restart == "n" or restart == "N":
-                print("Goodbye!")
+                print(pyfiglet.figlet_format('Goodbye!', font='starwars'))
                 raise SystemExit
             else:
                 print(colorama.Fore.RED + "Invalid option, please confirm your choice.")
