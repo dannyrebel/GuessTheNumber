@@ -8,13 +8,13 @@ print("Welcome to 'Guess the Number' by Danny!\nYou have 5 attempts to guess the
       "Good luck!")
 
 
-
 while True:
     # Repeatability after losing
     if is_Over:
         while True:
             restart = str(input(colorama.Fore.LIGHTWHITE_EX + "Play again?: (y / n): "))
             if restart == "y" or restart == "Y":
+                attempts = 0
                 break
             elif restart == "n" or restart == "N":
                 print("Goodbye!")
@@ -22,6 +22,7 @@ while True:
             else:
                 print(colorama.Fore.RED + "Invalid option, please confirm your choice.")
                 continue
+    is_Over = False
 
     # Game logic
     player_choice = input(colorama.Fore.LIGHTWHITE_EX + "Guess the number: ")
@@ -32,6 +33,7 @@ while True:
 
     if int(player_choice) == number_choice:
         print(colorama.Fore.LIGHTGREEN_EX + f"You got it! The correct number was: {number_choice}")
+        is_Over = True
     elif int(player_choice) > number_choice:
         print(colorama.Fore.RED + "Too high!")
         attempts += 1
